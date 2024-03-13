@@ -1,15 +1,9 @@
-import React from "react";
-import { Button, Card } from "antd";
-import { SmileOutlined } from "@ant-design/icons";
-import BaseLayout from "./layouts/BaseLayout";
+import Dashboard from "./pages/Dashboard";
+import Budget from "./pages/Budget";
+import Transactions from "./pages/Transactions";
 
-const App = () => (
-  <BaseLayout>
-    <Card>
-      <Button type="primary">Button</Button>
-      <SmileOutlined />
-    </Card>
-  </BaseLayout>
-);
+const App = () => {
+  return <Dashboard />;
+};
 
 export default App;
