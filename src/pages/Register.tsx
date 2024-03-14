@@ -1,15 +1,17 @@
 import { Button, Card, Checkbox, Form, Input } from "antd";
+import { register } from "@/requests";
 
 type FieldType = {
-  fullName?: string;
-  username?: string;
-  password?: string;
-  terms?: boolean;
+  fullName: string;
+  username: string;
+  password: string;
+  terms: boolean;
 };
 
 const Register = () => {
   const onFinish = (values: FieldType) => {
     console.log("Success:", values);
+    register(values);
   };
 
   return (
