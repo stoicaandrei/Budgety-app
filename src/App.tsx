@@ -5,21 +5,14 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useState } from "react";
-
-const defaultToken = localStorage.getItem("authToken");
+import { useAuth } from "./contexts/AuthContext";
 
 const App = () => {
-  const [token, setToken] = useState<string | null>(defaultToken);
-
-  const updateToken = (token: string) => {
-    setToken(token);
-    localStorage.setItem("authToken", token);
-  };
+  const { user } = useAuth();
 
   return (
     <Routes>
-      {token && (
+      {user && (
         <>
           <Route path="/" element={<Dashboard />} />
           <Route path="/budget" element={<Budget />} />
@@ -27,9 +20,9 @@ const App = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </>
       )}
-      {!token && (
+      {!user && (
         <>
-          <Route path="/login" element={<Login onLogin={updateToken} />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<Navigate to="/login" />} />
         </>

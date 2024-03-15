@@ -1,5 +1,5 @@
 import { Button, Card, Checkbox, Form, Input } from "antd";
-import { login } from "@/requests";
+import { useAuth } from "@/contexts/AuthContext";
 
 type FieldType = {
   username: string;
@@ -7,18 +7,12 @@ type FieldType = {
   remember: boolean;
 };
 
-type LoginProps = {
-  onLogin: (token: string) => void;
-};
+const Login = () => {
+  const { login } = useAuth();
 
-const Login = ({ onLogin }: LoginProps) => {
   const onFinish = async (values: FieldType) => {
-    console.log("Success:", values);
-    const result = await login(values);
-
-    if (result) {
-      onLogin(result.token);
-    }
+    console.log("onFinish:", values);
+    await login(values.username, values.password);
   };
 
   return (
