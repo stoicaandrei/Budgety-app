@@ -1,5 +1,5 @@
+import { useAuth } from "@/contexts/AuthContext";
 import { Button, Card, Checkbox, Form, Input } from "antd";
-import { register } from "@/requests";
 
 type FieldType = {
   fullName: string;
@@ -9,8 +9,9 @@ type FieldType = {
 };
 
 const Register = () => {
+  const { register } = useAuth();
   const onFinish = (values: FieldType) => {
-    console.log("Success:", values);
+    console.log("onFinish:", values);
     register(values);
   };
 

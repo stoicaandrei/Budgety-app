@@ -12,7 +12,7 @@ const Login = () => {
 
   const onFinish = async (values: FieldType) => {
     console.log("onFinish:", values);
-    await login(values.username, values.password);
+    await login(values);
   };
 
   return (
