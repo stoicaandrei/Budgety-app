@@ -7,10 +7,18 @@ type FieldType = {
   remember: boolean;
 };
 
-const Login = () => {
-  const onFinish = (values: FieldType) => {
+type LoginProps = {
+  onLogin: (token: string) => void;
+};
+
+const Login = ({ onLogin }: LoginProps) => {
+  const onFinish = async (values: FieldType) => {
     console.log("Success:", values);
-    login(values);
+    const result = await login(values);
+
+    if (result) {
+      onLogin(result.token);
+    }
   };
 
   return (
