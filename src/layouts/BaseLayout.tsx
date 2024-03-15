@@ -16,7 +16,7 @@ type BaseLayoutProps = {
 };
 
 const BaseLayout = ({ children }: BaseLayoutProps) => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -63,7 +63,10 @@ const BaseLayout = ({ children }: BaseLayoutProps) => {
                 height: 64,
               }}
             />
-            <div style={{ paddingRight: 20 }}>{user?.username}</div>
+            <Flex align="center" gap={20} style={{ paddingRight: 20 }}>
+              <div>{user?.username}</div>
+              <Button onClick={logout}>Logout</Button>
+            </Flex>
           </Flex>
         </Header>
         <Content
